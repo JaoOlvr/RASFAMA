@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2E6199;
+  --primary-deep: #1B4478;
+  --navy: #0F2740;
+  --accent: #6BAA3B;
+  --bg: #F8FAFD;
+  --surface: #EDF3FA;
+  --text: #14263A;
+  --muted: #4B607A;
+  --danger: #C0392B;
+}
+
+.dark {
+  --primary: #6FA0D6;
+  --primary-deep: #9CC0E8;
+  --navy: #0B1B2E;
+  --accent: #8BCB57;
+  --bg: #0B1B2E;
+  --surface: #12263D;
+  --text: #E8F0F9;
+  --muted: #A9BBD0;
+  --danger: #FF7B6B;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  position: relative;
+}
+
+/* Fundo com atmosfera orgânica dinâmica no modo claro */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(46, 97, 153, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 90% 40%, rgba(107, 170, 59, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(27, 68, 120, 0.05) 0%, transparent 50%);
+}
+
+.dark body::before {
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(111, 160, 214, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 40%, rgba(139, 203, 87, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(156, 192, 232, 0.05) 0%, transparent 50%);
+}
+
+/* Foco visível WCAG 2.2 AA */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Alvos mínimos de toque no mobile */
+.tap-target {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Utilidades personalizadas para botões com contraste e vida */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+  box-shadow: 0 4px 14px -2px rgba(46, 97, 153, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -3px rgba(46, 97, 153, 0.45);
+  filter: brightness(1.05);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface);
+  color: var(--primary);
+  transform: translateY(-2px);
+  border-color: var(--primary-deep);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #56912B 100%);
+  color: #0F2740;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+  box-shadow: 0 4px 14px -2px rgba(107, 170, 59, 0.35);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -3px rgba(107, 170, 59, 0.5);
+  filter: brightness(1.06);
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+.dark .btn-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #6EAA3A 100%);
+  color: #0B1B2E;
+}
+
+/* Cartões com profundidade e hover vivo */
+.interactive-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 97, 153, 0.14);
+  box-shadow: 0 4px 20px -2px rgba(15, 39, 64, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .interactive-card {
+  background: rgba(18, 38, 61, 0.8);
+  border: 1px solid rgba(111, 160, 214, 0.15);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -4px rgba(46, 97, 153, 0.12);
+  border-color: rgba(46, 97, 153, 0.3);
+}
+
+.dark .interactive-card:hover {
+  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.4);
+  border-color: rgba(111, 160, 214, 0.35);
+}
+
+/* Barra de progresso de leitura no topo */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  z-index: 60;
+  transition: width 0.1s ease-out;
+}
