@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '@/components/home/Hero';
 import MissionVisionValues from '@/components/home/MissionVisionValues';
+import VideoSection from '@/components/home/VideoSection';
 import AreasOfWork from '@/components/home/AreasOfWork';
 import KnowYourRights from '@/components/home/KnowYourRights';
 import HowItWorks from '@/components/home/HowItWorks';
@@ -17,6 +18,9 @@ export default function Home() {
 
       {/* 3. Missão, Visão e Valores */}
       <MissionVisionValues />
+
+      {/* Vídeo Institucional / Transição entre seções */}
+      <VideoSection />
 
       {/* 4. Áreas de Atuação */}
       <AreasOfWork />
@@ -41,4 +45,3 @@ export default function Home() {
     </main>
   );
 }
-
